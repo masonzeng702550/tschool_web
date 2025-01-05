@@ -8,130 +8,103 @@ body {
   padding: 0;
 }
 
-/* Home page styles */
-.v1_2 {
+/* 首頁樣式 */
+.hero-section {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0) 20%), rgba(230,231,238,1);
-  padding: 10px 10px;
-  margin: 10px;
-  opacity: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%), url("../images/bg.jpg");
+  background-size: cover;
+  background-position: center;
   position: relative;
-  top: 0px;
-  left: 0px;
-  overflow: hidden;
 }
 
-.v1_122 {
-  width: 700px;
-  color: #000000;
+.hero-text {
   position: absolute;
-  top: 191px;
-  left: 92px;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
   font-family: Noto Serif TC;
   font-size: 56px;
-  line-height: 1.4;
-  font-weight: bold;
-  opacity: 1;
-  text-align: left;
+  color: #FFFFFF;
+  line-height: 1.5;
 }
 
-.v3_14 {
-  width: 222px;
-  height: 50px;
-  background: url("../images/v3_14.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  position: absolute;
-  top: 23px;
-  left: 32px;
-  overflow: hidden;
-}
-
-.v3_130 {
-  width: 30px;
-  height: 20px;
-  background: rgba(0,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 38px;
-  left: 52px;
+.content-section {
+  width: 100%;
+  background: #FFFFFF;
+  padding: 120px 0;
 }
 
 .v89_7 {
-  width: 500px;
-  color: #000000;
-  position: absolute;
-  top: 740px;
-  left: 159px;
+  padding: 0 60px;
   font-family: Noto Serif TC;
-  font-weight: 600;
-  font-size: 42px;
-  line-height: 1.5;
-  opacity: 1;
-  text-align: left;
+  font-size: 56px;
+  color: #000000;
+  margin-bottom: 40px;
 }
 
 .v89_8 {
-  width: 600px;
-  color: #000000;
-  position: absolute;
-  top: 889px;
-  left: 172px;
+  padding: 0 60px;
   font-family: Noto Sans TC;
-  font-weight: 500;
   font-size: 24px;
   line-height: 1.8;
-  opacity: 1;
-  text-align: left;
+  color: #000000;
+  margin-bottom: 60px;
 }
 
 .v89_11 {
-  width: 800px;
-  color: #000000;
-  position: absolute;
-  top: 1493px;
-  left: 172px;
+  padding: 0 60px;
   font-family: Noto Sans TC;
-  font-weight: 500;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.8;
-  opacity: 1;
-  text-align: left;
+  color: #000000;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .learn-more-btn {
   position: absolute;
-  top: 550px;
-  left: 92px;
-  padding: 18px 45px;
-  background-color: transparent;
-  border: 2px solid #000000;
-  color: #000000;
+  bottom: 120px;
+  left: 60px;
   font-family: Noto Sans TC;
-  font-size: 20px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 18px;
+  color: #FFFFFF;
   text-decoration: none;
+  transition: opacity 0.3s ease;
 }
 
 .learn-more-btn:hover {
-  background-color: #000000;
-  color: #FFFFFF;
+  opacity: 0.8;
 }
 
-.content-section {
+.arrow-down {
   opacity: 0;
-  transition: opacity 2.5s ease;
-  padding-top: 80vh; 
-  margin-top: -60vh; 
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: translateX(-50%) rotate(45deg);
+  animation: arrowBounce 2s infinite;
+  transition: opacity 0.3s ease;
 }
 
-.content-section.visible {
+.arrow-down.visible {
   opacity: 1;
+}
+
+@keyframes arrowBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0) rotate(45deg);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-20px) rotate(45deg);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-10px) rotate(45deg);
+  }
 }
 
 /* 學校特色頁面樣式 */
@@ -547,38 +520,4 @@ body {
 
 html {
   scroll-behavior: smooth;
-}
-
-@keyframes arrow-down {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(40px); 
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(80px); 
-    opacity: 0;
-  }
-}
-
-.arrow-down {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 30vh; 
-  width: 40px;
-  height: 40px;
-  border-left: 3px solid #FFFFFF;
-  border-bottom: 3px solid #FFFFFF;
-  transform: rotate(-45deg);
-  opacity: 0;
-  display: none;
-}
-
-.arrow-down.visible {
-  display: block;
-  animation: arrow-down 3s ease-in-out infinite;
 }

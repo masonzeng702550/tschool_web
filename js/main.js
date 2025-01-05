@@ -98,22 +98,19 @@ document.addEventListener('DOMContentLoaded', function() {
 // 滾動效果
 document.querySelector('.learn-more-btn')?.addEventListener('click', function(e) {
     e.preventDefault();
-    const content = document.getElementById('content');
     const arrow = document.querySelector('.arrow-down');
     
-    arrow.classList.add('visible');
-    
-    setTimeout(() => {
-        window.scrollTo({
-            top: window.innerHeight * 0.8,
-            behavior: 'smooth'
-        });
-        content.classList.add('visible');
-        
+    if (arrow) {
+        arrow.classList.add('visible');
         setTimeout(() => {
             arrow.classList.remove('visible');
-        }, 3500);
-    }, 1200);
+        }, 2000);
+    }
+    
+    const content = document.querySelector('#content');
+    if (content) {
+        content.scrollIntoView({ behavior: 'smooth' });
+    }
 });
 
 // 監聽滾動事件來控制選單的顯示
