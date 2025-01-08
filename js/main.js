@@ -115,10 +115,10 @@ document.querySelector('.learn-more-btn')?.addEventListener('click', function(e)
         }, 2000);
     }
     
-    const content = document.querySelector('#content');
-    if (content) {
-        content.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+    });
 });
 
 // 監聽滾動事件來控制選單的顯示
