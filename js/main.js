@@ -1,53 +1,61 @@
 // 選單控制
 document.addEventListener('DOMContentLoaded', function() {
-    const dropdown = document.querySelector('.dropdown');
-    const dropdownContent = document.querySelector('.dropdown-content');
-    let isDropdownOpen = false;
-    let timeoutId;
+    const dropdowns = document.querySelectorAll('.dropdown');
+    const dropdownContents = document.querySelectorAll('.dropdown-content');
+    let isDropdownOpen = new Array(dropdowns.length).fill(false);
+    let timeoutIds = new Array(dropdowns.length).fill(null);
 
-    // 點擊選單時切換下拉內容
-    dropdown.addEventListener('click', function(e) {
-        e.stopPropagation();
-        isDropdownOpen = !isDropdownOpen;
-        if (isDropdownOpen) {
-            dropdown.classList.add('active');
-        } else {
-            dropdown.classList.remove('active');
-        }
-    });
+    // 為每個下拉選單添加事件監聽
+    for (let i = 0; i < dropdowns.length; i++) {
+        const dropdown = dropdowns[i];
+        const dropdownContent = dropdownContents[i];
 
-    // 滑鼠進入下拉選單時
-    dropdown.addEventListener('mouseenter', function() {
-        clearTimeout(timeoutId);
-        dropdown.classList.add('active');
-        isDropdownOpen = true;
-    });
-
-    // 滑鼠離開下拉選單時
-    dropdown.addEventListener('mouseleave', function() {
-        timeoutId = setTimeout(() => {
-            if (!dropdownContent.matches(':hover')) {
+        // 點擊選單時切換下拉內容
+        dropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+            isDropdownOpen[i] = !isDropdownOpen[i];
+            if (isDropdownOpen[i]) {
+                dropdown.classList.add('active');
+            } else {
                 dropdown.classList.remove('active');
-                isDropdownOpen = false;
             }
-        }, 100);
-    });
+        });
 
-    // 滑鼠進入下拉內容時
-    dropdownContent.addEventListener('mouseenter', function() {
-        clearTimeout(timeoutId);
-    });
+        // 滑鼠進入下拉選單時
+        dropdown.addEventListener('mouseenter', function() {
+            clearTimeout(timeoutIds[i]);
+            dropdown.classList.add('active');
+            isDropdownOpen[i] = true;
+        });
 
-    // 滑鼠離開下拉內容時
-    dropdownContent.addEventListener('mouseleave', function() {
-        dropdown.classList.remove('active');
-        isDropdownOpen = false;
-    });
+        // 滑鼠離開下拉選單時
+        dropdown.addEventListener('mouseleave', function() {
+            timeoutIds[i] = setTimeout(() => {
+                if (!dropdownContent.matches(':hover')) {
+                    dropdown.classList.remove('active');
+                    isDropdownOpen[i] = false;
+                }
+            }, 100);
+        });
 
-    // 點擊頁面其他地方時關閉下拉選單
+        // 滑鼠進入下拉內容時
+        dropdownContent.addEventListener('mouseenter', function() {
+            clearTimeout(timeoutIds[i]);
+        });
+
+        // 滑鼠離開下拉內容時
+        dropdownContent.addEventListener('mouseleave', function() {
+            dropdown.classList.remove('active');
+            isDropdownOpen[i] = false;
+        });
+    }
+
+    // 點擊頁面其他地方時關閉所有下拉選單
     document.addEventListener('click', function() {
-        dropdown.classList.remove('active');
-        isDropdownOpen = false;
+        dropdowns.forEach((dropdown, index) => {
+            dropdown.classList.remove('active');
+            isDropdownOpen[index] = false;
+        });
     });
 });
 
