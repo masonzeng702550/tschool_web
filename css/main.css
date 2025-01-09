@@ -76,8 +76,8 @@ body {
     z-index: 80;
 }
 
-.header-title-w {
-    color: rgb(255, 255, 255);
+.header-title-b {
+    color: black;
     font-family: Noto Serif TC;
     font-size: 56px;
     font-weight: bold;
